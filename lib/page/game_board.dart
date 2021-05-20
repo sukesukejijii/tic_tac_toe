@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tic_tac_toe/controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class GameBoard extends ConsumerWidget {
   @override
@@ -105,7 +106,7 @@ class GameBoard extends ConsumerWidget {
                 ),
               ),
               Expanded(
-                flex: 3,
+                flex: 2,
                 child: Container(
                   width: 400,
                   child: GridView.builder(
@@ -150,63 +151,77 @@ class GameBoard extends ConsumerWidget {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 45),
-                  child: Container(
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(25)),
-                              color: Colors.pinkAccent,
-                              textColor: Colors.white,
-                              child: const Text(
-                                'Next Game',
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                ),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25)),
+                            color: Colors.pinkAccent,
+                            textColor: Colors.white,
+                            child: const Text(
+                              'Next Game',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
                               ),
-                              padding: const EdgeInsets.all(20),
-                              onPressed: gameController.clearBoard,
                             ),
-                            const SizedBox(width: 75),
-                            RaisedButton(
-                              child: const Text(
-                                'Reset',
-                                style: TextStyle(fontSize: 18),
-                              ),
-                              padding: const EdgeInsets.all(20),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
+                            padding: const EdgeInsets.all(20),
+                            onPressed: gameController.clearBoard,
+                          ),
+                          const SizedBox(width: 75),
+                          RaisedButton(
+                            child: const Text(
+                              'Reset',
+                              style: TextStyle(fontSize: 18),
                             ),
-                          ],
-                        ),
-                        const SizedBox(height: 15),
-                        const Text(
-                          '先手・後手は勝負ごとにランダムで決定',
-                          style: const TextStyle(
-                            color: Colors.white70,
-                            fontSize: 14,
+                            padding: const EdgeInsets.all(20),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
                           ),
+                        ],
+                      ),
+                      const SizedBox(height: 15),
+                      const Text(
+                        '先手・後手は勝負ごとにランダムで決定',
+                        style: const TextStyle(
+                          color: Colors.white70,
+                          fontSize: 14,
                         ),
-                        const SizedBox(height: 3),
-                        const Text(
-                          '© KATSUDON FACTORY',
-                          style: const TextStyle(
-                            color: Colors.white70,
-                            fontSize: 14,
+                      ),
+                      const SizedBox(height: 15),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextButton(
+                            onPressed: () => _launchURL(
+                                'https://github.com/sukesukejijii/tic_tac_toe'),
+                            child: Image.asset('assets/github.png'),
                           ),
-                        ),
-                      ],
-                    ),
+                          const Text(
+                            'GitHub Repo',
+                            style: const TextStyle(
+                              color: Colors.white70,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
             ],
           ),
         ));
+  }
+
+  Future<void> _launchURL(String url) async {
+    await canLaunch(url)
+        ? await launch(url)
+        : throw Exception('Could not launch');
   }
 }

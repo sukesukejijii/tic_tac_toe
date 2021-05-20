@@ -41,7 +41,7 @@ class SplashScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 80.0),
                 child: Container(
                   child: const Text(
-                    "© KATSUDON FACTORY",
+                    "(C) NANTOKA FACTORY",
                     style: const TextStyle(
                       color: Colors.white70,
                       fontSize: 14,
