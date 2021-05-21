@@ -61,6 +61,6 @@ flutter:
         - asset: fonts/dot_gothic.ttf
     - family: emoji
       fonts:
-        - asset: fonts/emoji.ttc
+        - asset: fonts/emoji.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

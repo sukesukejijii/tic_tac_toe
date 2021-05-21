@@ -76,7 +76,7 @@ class GameController extends ChangeNotifier {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             title: Center(
               child: const Text(
-                '引き分け!',
+                '引き分け！',
                 style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
