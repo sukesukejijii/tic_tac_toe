@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/page/game_board.dart';
 
+import '../custom_route.dart';
+
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -54,9 +56,8 @@ class SplashScreen extends StatelessWidget {
               onTap: () async {
                 await Navigator.push(
                     context,
-                    MaterialPageRoute(
+                    CustomRoute(
                       builder: (context) => GameBoard(),
-                      fullscreenDialog: true,
                     ));
               },
               child: Padding(
