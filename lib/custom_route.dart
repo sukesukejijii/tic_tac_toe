@@ -16,4 +16,7 @@ class CustomRoute extends MaterialPageRoute {
       Animation<double> secondaryAnimation, Widget child) {
     return FadeTransition(opacity: animation, child: child);
   }
+
+  @override
+  Duration get transitionDuration => Duration(seconds: 1);
 }
